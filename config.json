@@ -1,0 +1,10 @@
+[
+ {"listen": 6378, 
+  "master":{"host": "localhost", "port": 6379},
+  "slave": [{"host": "localhost", "port": 6380}]
+ },
+ {"listen": 6377, 
+  "master":{"host": "localhost", "port": 6379},
+  "slave": [{"host": "localhost", "port": 6380}]
+ }
+]
