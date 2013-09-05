@@ -3,6 +3,8 @@ redis_proxy
 A redis proxy that supprot read/write splitting. It works like haproxy,
 but only used with redis.For now it's a very rough project.
 
+The source is at `redis proxy <https://github.com/youngking/redis_proxy>`_.
+
 Usage
 ===============
 redis-proxy -c config.json
