@@ -8,7 +8,7 @@ classifiers = [
     'License :: OSI Approved :: BSD License',
 ]
 
-version = '0.0.1'
+version = '0.0.2'
 README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
 setup(name='redis_proxy',
@@ -29,7 +29,8 @@ setup(name='redis_proxy',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'twisted'
+          'twisted',
+          'redis_protocol',
       ],
       entry_points="""
       # -*- Entry points: -*-

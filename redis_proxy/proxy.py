@@ -12,6 +12,14 @@ from twisted.python import log
 import redis_protocol
 
 
+readOnlyCommands = [
+    'info', 'smembers', 'hlen', 'hmget', 'srandmember', 'hvals', 'randomkey', 'strlen',
+    'dbsize', 'keys', 'ttl', 'lindex', 'type', 'llen', 'dump', 'scard', 'echo', 'lrange',
+    'zcount', 'exists', 'sdiff', 'zrange', 'mget', 'zrank', 'get', 'getbit', 'getrange',
+    'zrevrange', 'zrevrangebyscore', 'hexists', 'object', 'sinter', 'zrevrank', 'hget',
+    'zscore', 'hgetall', 'sismember']
+
+
 class ProxyClientProtocol(protocol.Protocol):
     def connectionMade(self):
         log.msg("Client: connected to peer")
@@ -80,9 +88,9 @@ class ProxyServerProtocol(protocol.Protocol):
 
     def dataReceived(self, chunk):
         log.msg("Server: %d bytes received" % len(chunk))
-        command = redis_protocol.parse(chunk)[0]
+        command = redis_protocol.decode(chunk)[0]
         log.msg("command: %s" % command)
-        if command.lower() in redis_protocol.readOnlyCommands:
+        if command.lower() in readOnlyCommands:
             slave_cli_queue = self.iter_slave_cli_queues.next()
             slave_cli_queue.put(chunk)
         else:

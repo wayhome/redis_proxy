@@ -7,7 +7,13 @@ The source is at `redis proxy <https://github.com/youngking/redis_proxy>`_.
 
 Usage
 ===============
-redis-proxy -c config.json
+install::
+
+    pip install redis_proxy
+
+then run::
+
+    redis-proxy -c config.json
 
 Config Example
 ===============
